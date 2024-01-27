@@ -1,5 +1,6 @@
 import multer from "multer"
 import { Request,Response } from "express"
+import {} from "mongoose"
 
 const upload = multer({dest:"/upload"})
 
@@ -19,6 +20,7 @@ try {
 }
 export const uploadFile = async (res:Response, req:Request)=>{
     try {
+        
         upload.single('name')
         console.log(req.file?.filename,req.body)
         console.log("entrando")
