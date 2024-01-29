@@ -1,28 +1,18 @@
 import multer from "multer"
+import path from "node:path"
 import { Request,Response } from "express"
 import {} from "mongoose"
 
-const upload = multer({dest:"/upload"})
+import {models} from "../model/SchemaFiles"
+import { callbackify } from "util"
 
-export const storage = multer.diskStorage({
+const route = path.join()
 
-    filename:function(req,file,cb){
-        cb(null,'/upload')
-        
-    }
-})
-export const ejemplo = async (res:Response,req:Request)=>{
-try {
-    res.send("solasdasd")
-} catch (error) {
-     
-}
-}
-export const uploadFile = async (res:Response, req:Request)=>{
+export const saveFile = async (res:Response, req:Request)=>{
     try {
+    
         
-        upload.single('name')
-        console.log(req.file?.filename,req.body)
+        console.log(req.file,req.body)
         console.log("entrando")
     } catch (error) {
         
