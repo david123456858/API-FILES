@@ -18,15 +18,16 @@ const firebaseConfig={
 const appfire = initializeApp(firebaseConfig)
 const app = express();
 
-app.use(express.json()); //middlware para que el cuerpo de la req sea un json
+app.use(express.json()) //middlware para que el cuerpo de la req sea un json
 app.use(morgan("dev"))
+app.use(express.urlencoded({extended:true}))
 const PORT = process.env.PORT ?? 3000;
 
 
 ConnecDb()
 
 app.get("/",(req:Request,res:Response)=>{
-  res.send("hola")
+  res.send("Bienvenido a la APIFILE")
 })
 
 app.use(routesFiles)

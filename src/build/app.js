@@ -6,8 +6,19 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
+const app_1 = require("firebase/app");
 const db_1 = require("./src/database/db");
 const Files_1 = __importDefault(require("./src/routes/Files"));
+const firebaseConfig = {
+    apiKey: "AIzaSyBoRfpIg0h32vy7tSF9AD71uJfGSwlo3uY",
+    authDomain: "direct-builder-412720.firebaseapp.com",
+    projectId: "direct-builder-412720",
+    storageBucket: "direct-builder-412720.appspot.com",
+    messagingSenderId: "538411677172",
+    appId: "1:538411677172:web:c1406ad92ad725059d35a1",
+    measurementId: "G-5M46GP65PE"
+};
+const appfire = (0, app_1.initializeApp)(firebaseConfig);
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); //middlware para que el cuerpo de la req sea un json
 app.use((0, morgan_1.default)("dev"));

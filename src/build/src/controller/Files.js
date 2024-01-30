@@ -12,32 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadFile = exports.example = exports.storage = void 0;
-const multer_1 = __importDefault(require("multer"));
-const upload = (0, multer_1.default)({ dest: "/upload" });
-exports.storage = multer_1.default.diskStorage({
-    filename: function (req, file, cb) {
-        cb(null, '/upload');
-    }
-});
-const example = (res, req) => {
+exports.saveFile = void 0;
+const node_path_1 = __importDefault(require("node:path"));
+const route = node_path_1.default.join();
+const saveFile = (res, req) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.status(200).json({
-            data: "yaaaaaa balbaro"
-        });
-    }
-    catch (error) {
-    }
-};
-exports.example = example;
-const uploadFile = (res, req) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    try {
-        upload.single('name');
-        console.log((_a = req.file) === null || _a === void 0 ? void 0 : _a.filename, req.body);
+        console.log(req.file, req.body);
         console.log("entrando");
     }
     catch (error) {
     }
 });
-exports.uploadFile = uploadFile;
+exports.saveFile = saveFile;

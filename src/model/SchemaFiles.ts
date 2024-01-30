@@ -1,4 +1,4 @@
-import { Schema,SchemaType,model } from "mongoose";
+import { Schema,SchemaType,model,Document } from "mongoose";
 import multer from "multer"
 
 export const models = new Schema({
@@ -13,4 +13,6 @@ export const models = new Schema({
         type:Date
     }
 })
+
+
 
