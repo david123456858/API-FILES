@@ -9,10 +9,12 @@ export const models = new Schema({
     size:{
         type:Number
     },
-    todate:{
+    toDate:{
         type:Date
     }
 })
 
+const FilesModels = model('Files',models)
+export default FilesModels
 
 

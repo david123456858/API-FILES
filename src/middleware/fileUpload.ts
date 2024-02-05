@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     }
  })
 
- export const upload = multer({storage:storage}).single('file')
+ export const upload = multer({storage:storage}).single('file') // it can be used in this ways
 
  export const uploadFile = (req:Request,res:Response,next:NextFunction)=>{
   upload(req,res,function (err){
@@ -22,8 +22,8 @@ const storage = multer.diskStorage({
     }else if (err){
       throw err
     }
-    res.status(200).json({data:"TODO OKAY"})
-    next
+     //console.log(req)
+     return next()
   })
   }
   
