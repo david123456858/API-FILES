@@ -7,7 +7,6 @@ import FilesModels from "../model/SchemaFiles"
 
 export const saveFile = async (req:Request, res:Response)=>{
     try {
-        console.log(req.file?.fieldname)
         const originalname = req.file?.originalname
         const size = req.file?.size
         const filsModels ={
@@ -16,6 +15,7 @@ export const saveFile = async (req:Request, res:Response)=>{
             toDate: Date.now()
         }
         const create = await FilesModels.create(filsModels)
+        console.log(create)
         res.status(200).json({data:"TODO OKAY"})
     } catch (error) {
         throw new Error    
