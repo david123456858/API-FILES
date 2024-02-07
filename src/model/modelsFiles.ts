@@ -15,7 +15,5 @@ export const models = new Schema({
 })
 
 
-const FilesModels = model('Files',models)
-export default FilesModels
-
-
+const filesModels = model('Files',models)
+export default filesModels

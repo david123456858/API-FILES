@@ -5,7 +5,7 @@ import {initializeApp} from 'firebase/app'
 import {getStorage} from 'firebase/storage'
 
 import { ConnecDb } from "./src/database/db";
-import routesFiles from "./src/routes/Files"
+import routesFiles from "./src/routes/files"
 
 const firebaseConfig={
   apiKey: "AIzaSyBoRfpIg0h32vy7tSF9AD71uJfGSwlo3uY",

@@ -2,7 +2,7 @@ import { Request,Response } from "express"
 import {} from "mongoose"
 
 
-import FilesModels from "../model/SchemaFiles"
+import filesModels from "../model/modelsFiles"
 
 
 export const saveFile = async (req:Request, res:Response)=>{
@@ -14,7 +14,7 @@ export const saveFile = async (req:Request, res:Response)=>{
             size:size,
             toDate: Date.now()
         }
-        const create = await FilesModels.create(filsModels)
+        const create = await filesModels.create(filsModels)
         console.log(create)
         res.status(200).json({data:"TODO OKAY"})
     } catch (error) {
