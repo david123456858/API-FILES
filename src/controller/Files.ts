@@ -1,10 +1,11 @@
 import { Request,Response } from "express"
 import {} from "mongoose"
-import {config} from 'dotenv'
+
 
 import filesModels from "../model/modelsFiles"
+import { User } from "../model/user"
+import { tokenSing } from "../helpers/tokens-files"
 
-config()
 export const saveFile = async (req:Request, res:Response)=>{
     try {
         const originalname = req.file?.originalname
@@ -16,9 +17,19 @@ export const saveFile = async (req:Request, res:Response)=>{
         }
         const create = await filesModels.create(filsModels)
         console.log(create)
-        console.log(process.env.PASSWORD_TOKEN)
-        res.status(200).json({data:"TODO OKAY"})
+        const user:User = {
+            rol:"admin",
+            name:"papi"
+        }
+        const token = await tokenSing(user)
+        res.status(200).json({data:token})
     } catch (error) {
         throw new Error    
     }
+}
+export const getAll = async (req:Request,res:Response)=>{
+    const get = await filesModels.find()
+    const headers = req.headers.authorization
+    //res.json({info : get})
+    //console.log(req.headers.authorization)
 }
