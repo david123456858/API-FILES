@@ -16,9 +16,8 @@ export const saveFile = async (req:Request, res:Response)=>{
             toDate: Date.now()
         }
         const create = await filesModels.create(filsModels)
-        console.log(create)
         const user:User = {
-            rol:"admin",
+            rol:"normal",
             name:"papi"
         }
         const token = await tokenSing(user)
@@ -27,9 +26,11 @@ export const saveFile = async (req:Request, res:Response)=>{
         throw new Error    
     }
 }
-export const getAll = async (req:Request,res:Response)=>{
-    const get = await filesModels.find()
-    const headers = req.headers.authorization
-    //res.json({info : get})
-    //console.log(req.headers.authorization)
+export const getAll = async (req:any,res:Response)=>{
+    if(req.role === 'admin'){
+        const all = await filesModels.find()
+        res.json({info:all})
+    }else{
+        res.send("Ven aca papa que tu po donde vienes")
+    }
 }

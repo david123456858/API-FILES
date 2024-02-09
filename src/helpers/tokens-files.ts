@@ -1,4 +1,4 @@
-import jwt, { Secret } from 'jsonwebtoken'
+import * as jwt from 'jsonwebtoken'
 import { config } from 'dotenv'
 
 
@@ -7,10 +7,16 @@ import { Console } from 'console'
 
 config()
 
+declare module 'jsonwebtoken'{
+    export interface myJwtRol extends jwt.JwtPayload{
+        rol: string
+    }
+}
+
 if(!process.env.PASSWORD_TOKEN){
     throw new Error
 }
-const processTokens = process.env.PASSWORD_TOKEN  as Secret
+const processTokens = process.env.PASSWORD_TOKEN  
 export const tokenSing= async (user:User)=>{
 
 return jwt.sign({
@@ -22,9 +28,10 @@ return jwt.sign({
 })
 }
 
-export const verifyTokens = async (tokens:any)=>{
+export const userRolFrom = (jwttoken: string): string | undefined =>{
 try {
-    return jwt.verify(tokens, processTokens)
+    const { rol }= <jwt.myJwtRol>jwt.verify(jwttoken, processTokens)
+    return rol
 } catch (error) {
     console.log('wuepaje algo paso '+ error)
 }
