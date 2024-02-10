@@ -9,19 +9,13 @@ export const checkRol = async(req:any,res:Response,next : NextFunction)=>{
     
     const token = req.headers.authorization
     if(!token){
-        res.json({data:"404 not found token"})
+        res.status(401).json({data:"not found token"})
     }
     const decode = token?.split(' ').pop()
-    
-    let verify : string = ''
-     if(decode){
-         verify = decode
-     }
+    const verify = decode ? decode : undefined
     const authorization = userRolFrom(verify)
-    
-    if(authorization){
-        req.role = authorization
-    }
+    req.role = authorization ? authorization : undefined 
+    console.log(req.role)
     return next()
     
 }
