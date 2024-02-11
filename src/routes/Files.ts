@@ -11,6 +11,6 @@ const routesFiles = Router()
 
 routesFiles.post(`${routerBase}`,uploadFile,saveFile)
 routesFiles.get(`${routerBase}`,checkRol, getAll)
-routesFiles.post(`${routerBase}/vip`,checkRol,saveFileFirebase)
+routesFiles.post(`${routerBase}/vip`,checkRol,uploadFile,saveFileFirebase)
 
 export default routesFiles

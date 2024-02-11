@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
     }else if (err){
       throw err
     }
-     //console.log(req)
+     console.log(req.file)
      return next()
   })
   }
