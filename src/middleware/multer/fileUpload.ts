@@ -1,7 +1,9 @@
-import { error } from "console"
 import { NextFunction, Request, Response} from "express"
 import multer, {MulterError}  from "multer"
-
+import { fileURLToPath } from "url"
+import path from "path"
+//const __dirname = fileURLToPath(import.meta.url) 
+//const route = path.join(__dirname,'../../../upload/')
 
 const storage = multer.diskStorage({
 
@@ -23,6 +25,8 @@ const storage = multer.diskStorage({
       throw err
     }
      console.log(req.file)
+     //console.log(__dirname)
+     //console.log(route)
      return next()
   })
   }
