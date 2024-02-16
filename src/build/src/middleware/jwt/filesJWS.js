@@ -7,14 +7,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { connect } from "mongoose";
-const DB = 'mongodb://127.0.0.1:27017/Files';
-export const ConnecDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield connect(DB);
-        console.log("todo correcto");
+import { userRolFrom } from "../../helpers/tokens-files";
+export const checkRol = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const token = req.headers.authorization;
+    if (!token) {
+        res.status(401).json({ data: "not found token" });
     }
-    catch (error) {
-        console.log(error);
-    }
+    const decode = token === null || token === void 0 ? void 0 : token.split(' ').pop();
+    const verify = decode ? decode : undefined;
+    const authorization = userRolFrom(verify);
+    req.role = authorization ? authorization : undefined;
+    console.log(req.role);
+    return next();
 });

@@ -1,11 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const fileUpload_1 = require("../middleware/fileUpload");
+import { Router } from "express";
+import { saveFile, getAll } from "../controller/files";
+import { uploadFile } from "../middleware/multer/fileUpload";
+import { checkRol } from "../middleware/jwt/filesJWS";
+import { saveFileFirebase } from "../controller/filesPremium";
 const routerBase = '/api/v1/files';
-const routesFiles = (0, express_1.Router)();
-routesFiles.post(`${routerBase}`, fileUpload_1.uploadFile);
-routesFiles.get(`${routerBase}`, (req, res) => {
-    res.send("papi funciona esta caga");
-});
-exports.default = routesFiles;
+const routesFiles = Router();
+routesFiles.post(`${routerBase}`, uploadFile, saveFile);
+routesFiles.get(`${routerBase}`, checkRol, getAll);
+/**
+ * @swagger
+ * /api/v1/files:
+ *   get:
+ *    tags:
+ *      -Files
+ *    summry: Get user */
+routesFiles.post(`${routerBase}/vip`, checkRol, uploadFile, saveFileFirebase);
+export default routesFiles;

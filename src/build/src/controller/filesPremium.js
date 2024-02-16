@@ -7,14 +7,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { connect } from "mongoose";
-const DB = 'mongodb://127.0.0.1:27017/Files';
-export const ConnecDb = () => __awaiter(void 0, void 0, void 0, function* () {
+import { ref } from 'firebase/storage';
+import { storage } from '../../appFireBase';
+export const saveFileFirebase = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
-        yield connect(DB);
-        console.log("todo correcto");
+        const filename = (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename;
+        console.log(filename);
+        if (!filename) {
+            res.status(404).json({ data: "Error not found file" });
+        }
+        const uploadFirebase = yield ref(storage, `../../upload/${filename}`);
+        console.log(uploadFirebase);
+        res.status(200).json({ data: "Querido Admin su archivo fue subido" });
     }
     catch (error) {
-        console.log(error);
+        throw new Error;
     }
 });

@@ -7,14 +7,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { connect } from "mongoose";
-const DB = 'mongodb://127.0.0.1:27017/Files';
-export const ConnecDb = () => __awaiter(void 0, void 0, void 0, function* () {
+import * as jwt from 'jsonwebtoken';
+import { config } from 'dotenv';
+config();
+if (!process.env.PASSWORD_TOKEN) {
+    throw new Error;
+}
+const processTokens = process.env.PASSWORD_TOKEN;
+export const tokenSing = (user) => __awaiter(void 0, void 0, void 0, function* () {
+    return jwt.sign({
+        rol: user.rol,
+        name: user.name
+    }, processTokens, {
+        expiresIn: '12h'
+    });
+});
+export const userRolFrom = (jwttoken) => {
     try {
-        yield connect(DB);
-        console.log("todo correcto");
+        const { rol } = jwt.verify(jwttoken, processTokens);
+        return rol;
     }
     catch (error) {
-        console.log(error);
+        console.log('wuepaje algo paso ' + error);
     }
-});
+};
