@@ -19,13 +19,13 @@ if(!process.env.PASSWORD_TOKEN){
 const processTokens = process.env.PASSWORD_TOKEN  
 export const tokenSing= async (user:User)=>{
 
-return jwt.sign({
+   return jwt.sign({
     rol:user.rol,
     name:user.name
-},processTokens,
-{
+    },processTokens,
+   {
     expiresIn:'12h'
-})
+   })
 }
 
 export const userRolFrom = (jwttoken: string): string | undefined =>{

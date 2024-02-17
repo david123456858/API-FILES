@@ -3,12 +3,12 @@ import multer, {MulterError}  from "multer"
 import { fileURLToPath } from "url"
 import path from "path"
 //const __dirname = fileURLToPath(import.meta.url) 
-//const route = path.join(__dirname,'../../../upload/')
+const route = path.join(process.cwd(),'/upload')
 
 const storage = multer.diskStorage({
 
     destination:function(req,file,cb){
-     cb(null, 'upload')
+     cb(null, route)
     },
     filename:function(req,file,cb){
       cb(null,file.originalname+Date.now())
@@ -24,8 +24,8 @@ const storage = multer.diskStorage({
     }else if (err){
       throw err
     }
-     console.log(req.file)
-     //console.log(__dirname)
+     //console.log(req.file)
+     //console.log(process.cwd())
      //console.log(route)
      return next()
   })

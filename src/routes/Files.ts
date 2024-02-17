@@ -17,9 +17,13 @@ routesFiles.get(`${routerBase}`,checkRol, getAll)
  * @swagger
  * /api/v1/files:
  *   get:
- *    tags:
- *      -Files
- *    summry: Get user */
+ *     tags:
+ *       - files
+ *     summary: get all
+ *     description: Endpoint to get alls files
+ *     requestBody:
+ *       
+ */
 routesFiles.post(`${routerBase}/vip`,checkRol,uploadFile,saveFileFirebase)
 
 export default routesFiles

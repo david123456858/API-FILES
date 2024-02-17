@@ -1,10 +1,8 @@
 import { SwaggerOptions } from "swagger-ui-express";
-import { fileURLToPath } from "node:url";
 import path from "path";
 
-//const __dirname = fileURLToPath(import.meta.url) 
 //TODO: El __dirname es utilizado para obtener de manera completa la ruta que quieras.
-
+//TODO: El process.cwd() es otra funcion que se acompla mas al commonjs y hace lo mismo
 const swaggerOptions : SwaggerOptions ={
     definition:{
         openapi:"3.0.3",
@@ -15,6 +13,6 @@ const swaggerOptions : SwaggerOptions ={
         },
         
     },
-    apis:[/*`${path.join(__dirname, './src/routes/files.ts')}`*/]
+    apis:[`${path.join(process.cwd(), '/src/routes/*.ts')}`]
 }
 export default swaggerOptions
