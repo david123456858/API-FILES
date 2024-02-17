@@ -1,7 +1,10 @@
-import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
-import { config } from "dotenv";
-config();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.storage = void 0;
+const app_1 = require("firebase/app");
+const storage_1 = require("firebase/storage");
+const dotenv_1 = require("dotenv");
+(0, dotenv_1.config)();
 const firebaseConfig = {
     apiKey: process.env.APY_KEY,
     authDomain: process.env.AUTHDOMAIN,
@@ -11,5 +14,5 @@ const firebaseConfig = {
     appId: process.env.APP_ID,
     measurementId: process.env.MEASUREMENTID,
 };
-const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app);
+const app = (0, app_1.initializeApp)(firebaseConfig);
+exports.storage = (0, storage_1.getStorage)(app);

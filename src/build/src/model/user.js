@@ -1,5 +1,8 @@
-import { Schema } from "mongoose";
-export const models = new Schema({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.User = exports.models = void 0;
+const mongoose_1 = require("mongoose");
+exports.models = new mongoose_1.Schema({
     rol: {
         type: String
     },
@@ -10,9 +13,10 @@ export const models = new Schema({
         type: Date
     }
 });
-export class User {
+class User {
     constructor(rol, name) {
         this.name = name;
         this.rol = rol;
     }
 }
+exports.User = User;

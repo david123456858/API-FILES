@@ -1,5 +1,8 @@
-import { Schema, model } from "mongoose";
-export const models = new Schema({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.models = void 0;
+const mongoose_1 = require("mongoose");
+exports.models = new mongoose_1.Schema({
     nameFiles: {
         type: String
     },
@@ -10,5 +13,5 @@ export const models = new Schema({
         type: Date
     }
 });
-const filesModels = model('Files', models);
-export default filesModels;
+const filesModels = (0, mongoose_1.model)('Files', exports.models);
+exports.default = filesModels;

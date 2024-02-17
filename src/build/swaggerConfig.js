@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 //const __dirname = fileURLToPath(import.meta.url) 
 //TODO: El __dirname es utilizado para obtener de manera completa la ruta que quieras.
 const swaggerOptions = {
@@ -11,4 +13,4 @@ const swaggerOptions = {
     },
     apis: [ /*`${path.join(__dirname, './src/routes/files.ts')}`*/]
 };
-export default swaggerOptions;
+exports.default = swaggerOptions;

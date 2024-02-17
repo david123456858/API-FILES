@@ -1,7 +1,13 @@
-import multer from "multer";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.uploadFile = exports.upload = void 0;
+const multer_1 = __importDefault(require("multer"));
 //const __dirname = fileURLToPath(import.meta.url) 
 //const route = path.join(__dirname,'../../../upload/')
-const storage = multer.diskStorage({
+const storage = multer_1.default.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'upload');
     },
@@ -9,10 +15,10 @@ const storage = multer.diskStorage({
         cb(null, file.originalname + Date.now());
     }
 });
-export const upload = multer({ storage: storage }).single('file'); // it can be used in this ways
-export const uploadFile = (req, res, next) => {
-    upload(req, res, function (err) {
-        if (err instanceof multer.MulterError) {
+exports.upload = (0, multer_1.default)({ storage: storage }).single('file'); // it can be used in this ways
+const uploadFile = (req, res, next) => {
+    (0, exports.upload)(req, res, function (err) {
+        if (err instanceof multer_1.default.MulterError) {
             res.status(500).json({ error: "Hubo un problema en la subida del archivo" });
         }
         else if (err) {
@@ -24,3 +30,4 @@ export const uploadFile = (req, res, next) => {
         return next();
     });
 };
+exports.uploadFile = uploadFile;
