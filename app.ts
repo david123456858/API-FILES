@@ -7,7 +7,7 @@ import routesFiles from "./src/routes/files"
 import routerSwagger from "./src/routes/swagger";
 
 
-const app = express();
+export const app = express();
 
 
 app.use(express.json()) //middlware para que el cuerpo de la req sea un json
