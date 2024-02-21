@@ -7,7 +7,7 @@ export const models= new Schema({
     username:{
         type:String
     },
-    toDate:{
+    date:{
         type:Date
     }
 })
@@ -22,3 +22,6 @@ export class User {
     }
 
 }
+
+// const modelUser = model('users',models)
+// export default modelUser

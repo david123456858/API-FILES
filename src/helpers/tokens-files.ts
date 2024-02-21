@@ -28,10 +28,14 @@ export const tokenSing= async (user:User)=>{
    })
 }
 
-export const userRolFrom = (jwttoken: string): string | undefined =>{
+export const userRolFrom = (jwttoken: string): User | undefined =>{
 try {
-    const { rol }= <jwt.myJwtRol>jwt.verify(jwttoken, processTokens)
-    return rol
+    const { rol,name }= <jwt.myJwtRol>jwt.verify(jwttoken, processTokens)
+    const user:User ={
+        rol: rol,
+        name: name
+    }
+    return user
 } catch (error) {
     console.log('wuepaje algo paso '+ error)
 }

@@ -9,6 +9,12 @@ export const models = new Schema({
     size:{
         type:Number
     },
+    // userName: {
+    //     type: String
+    // },
+    // rol:{
+    //     type:String
+    // },
     toDate:{
         type:Date
     }

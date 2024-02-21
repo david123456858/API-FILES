@@ -10,7 +10,7 @@ const routerBase:string ='/api/v1/files'
 
 const routesFiles = Router()
 
-routesFiles.post(`${routerBase}`,uploadFile,saveFile)
+routesFiles.post(`${routerBase}`,checkRol,uploadFile,saveFile)
 
 routesFiles.get(`${routerBase}`,checkRol, getAll)
 /** 
