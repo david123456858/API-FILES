@@ -15,7 +15,7 @@ export const checkRol = async(req:any,res:Response,next : NextFunction)=>{
     const verify = decode ? decode : undefined
     const authorization = userRolFrom(verify)
     req.info = authorization ? authorization : undefined 
-    console.log(req.info)
+    //console.log(req.info)
     
     return next()
     

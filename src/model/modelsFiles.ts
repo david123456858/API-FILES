@@ -9,17 +9,17 @@ export const models = new Schema({
     size:{
         type:Number
     },
-    // userName: {
-    //     type: String
-    // },
-    // rol:{
-    //     type:String
-    // },
+     userName: {
+         type: String
+     },
+     rol:{
+         type:String
+     },
     toDate:{
         type:Date
     }
 })
 
 
-const filesModels = model('Files',models)
+const filesModels = model('files',models)
 export default filesModels

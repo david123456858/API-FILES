@@ -1,6 +1,5 @@
 import { Request,Response } from "express"
 
-
 import filesModels from "../model/modelsFiles"
 import { User } from "../model/user"
 import { tokenSing } from "../helpers/tokens-files"
@@ -10,13 +9,11 @@ export const saveFile = async (req:any, res:Response)=>{
         
             const originalname = req.file?.originalname
             const size = req.file?.size
-            const userName = req.info.name
-            console.log(userName)
             const filsModels ={
                 nameFiles: originalname,
                 size:size,
-                //userName:req.info.name,
-                //rol:req.info.rol,
+                userName:req.info.name,
+                rol:req.info.rol,
                 toDate: Date.now()
             }
             
@@ -35,11 +32,20 @@ export const saveFile = async (req:any, res:Response)=>{
 }
 
 export const getAll = async (req:any,res:Response)=>{
-    const role = req.info.rol
+    try {
+        const role = req.info.rol
     if(role === 'admin'){
         const all = await filesModels.find()
         res.json({info:all})
+        const example2= await filesModels.estimatedDocumentCount({userName:{$gte:`${req.info.name}`}})
+        .then(count =>{
+            console.log(count)
+        })
+        
     }else{
         res.status(403).json({info:"No tienes autorización"})
+    }
+    } catch (error) {
+        throw new Error
     }
 }
