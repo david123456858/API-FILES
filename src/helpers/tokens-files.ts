@@ -37,6 +37,6 @@ try {
     }
     return user
 } catch (error) {
-    console.log('wuepaje algo paso '+ error)
+    console.log('Hubo un problema:  '+ error)
 }
 }

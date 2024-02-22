@@ -10,7 +10,7 @@ import path from 'path'
 
 export const saveFileFirebase = async (req:any,res:Response)=>{
     try {
-        
+        if(req.info.rol === 'premium'){
             const filename = req.file?.filename
             const _path = path.join(process.cwd(),`/upload/${filename}`)
             const file = req.file 
@@ -25,13 +25,14 @@ export const saveFileFirebase = async (req:any,res:Response)=>{
             
             res.status(200).json({data:"Querido Admin su archivo fue subido"})
             fs.unlink(_path,(err =>{
-                const verify = err ? err : "Se elimino el archivo"
+                const verify = err ? err : "it's deleted the file"
                 console.log(verify)
             }))
+        }else{
+            res.status(401).json({error:"Authorization Required"})
+        }
+            
     } catch (error) {
         throw new Error
     }
-
-    
-
 }
