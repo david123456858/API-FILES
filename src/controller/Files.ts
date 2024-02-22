@@ -8,11 +8,11 @@ import { count } from "console"
 export const saveFile = async (req: any, res: Response) => {
     try {
         let countTotal
-        filesModels.estimatedDocumentCount({userName:{$gte:`${req.info.rol}`}})
-        .then(count =>{
-            countTotal = count
-            console.log(count)
-        })
+        filesModels.estimatedDocumentCount({ userName: { $gte: `${req.info.rol}` } })
+            .then(count => {
+                countTotal = count
+                console.log(count)
+            })
         console.log(countTotal)
         const originalname = req.file?.originalname
         const size = req.file?.size
@@ -36,7 +36,7 @@ export const saveFile = async (req: any, res: Response) => {
     } catch (error) {
         throw new Error
     }
-} 
+}
 
 export const getAll = async (req: any, res: Response) => {
     try {

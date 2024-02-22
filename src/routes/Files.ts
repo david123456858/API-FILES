@@ -1,18 +1,18 @@
 import { Request, Response, Router } from "express";
 
 
-import { saveFile,getAll} from "../controller/files";
+import { saveFile, getAll } from "../controller/files";
 import { upload, uploadFile } from "../middleware/multer/fileUpload";
 import { checkRol } from "../middleware/jwt/filesJWS";
-import { saveFileFirebase} from "../controller/filesPremium";
+import { saveFileFirebase } from "../controller/filesPremium";
 
-const routerBase:string ='/api/v1/files'
+const routerBase: string = '/api/v1/files'
 
 const routesFiles = Router()
 
-routesFiles.post(`${routerBase}`,checkRol,uploadFile,saveFile)
+routesFiles.post(`${routerBase}`/*,checkRol*/, uploadFile, saveFile)
 
-routesFiles.get(`${routerBase}`,checkRol, getAll)
+routesFiles.get(`${routerBase}`, checkRol, getAll)
 /** 
  * @swagger
  * /api/v1/files:
@@ -24,6 +24,6 @@ routesFiles.get(`${routerBase}`,checkRol, getAll)
  *     requestBody:
  *       
  */
-routesFiles.post(`${routerBase}/vip`,checkRol,uploadFile,saveFileFirebase)
+routesFiles.post(`${routerBase}/vip`, checkRol, uploadFile, saveFileFirebase)
 
 export default routesFiles

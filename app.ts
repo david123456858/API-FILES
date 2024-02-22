@@ -1,4 +1,4 @@
-import express,{Request,Response} from "express";
+import express, { Request, Response } from "express";
 import { Server, createServer } from "http";
 import morgan from "morgan"
 
@@ -12,12 +12,12 @@ export const app = express();
 
 app.use(express.json()) //middlware para que el cuerpo de la req sea un json
 app.use(morgan("dev"))
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }))
 const PORT = process.env.PORT ?? 3000;
 
 ConnecDb()
 
-app.get("/",(req:Request,res:Response)=>{
+app.get("/", (req: Request, res: Response) => {
   res.send("Bienvenido a la APIFILE")
 })
 

@@ -1,25 +1,25 @@
-import { Schema,SchemaType,model,Document } from "mongoose";
+import { Schema, SchemaType, model, Document } from "mongoose";
 
 
 export const models = new Schema({
 
-    nameFiles:{
-        type:String
+    nameFiles: {
+        type: String
     },
-    size:{
-        type:Number
+    size: {
+        type: Number
     },
-     userName: {
-         type: String
-     },
-     rol:{
-         type:String
-     },
-    toDate:{
-        type:Date
+    userName: {
+        type: String
+    },
+    rol: {
+        type: String
+    },
+    toDate: {
+        type: Date
     }
 })
 
 
-const filesModels = model('files',models)
+const filesModels = model('files', models)
 export default filesModels
