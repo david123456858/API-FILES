@@ -11,14 +11,15 @@ export const checkRol = async (req: any, res: Response, next: NextFunction) => {
         const token = req.headers.authorization
         if (!token) {
             res.status(401).json({ data: "not found token" })
+        }else{
+            const decode = token?.split(' ').pop()
+            const verify = decode ? decode : undefined
+            const authorization = userRolFrom(verify)
+            req.info = authorization ? authorization : undefined
+            //console.log(req.info)
+            return next()
         }
-        const decode = token?.split(' ').pop()
-        const verify = decode ? decode : undefined
-        const authorization = userRolFrom(verify)
-        req.info = authorization ? authorization : undefined
-        //console.log(req.info)
-
-        return next()
+        
     } catch (error) {
         throw new Error
     }

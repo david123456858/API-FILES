@@ -19,7 +19,7 @@ export const upload = multer({ storage: storage }).single('file') // it can be u
 
 export const uploadFile = (req: Request, res: Response, next: NextFunction) => {
   try {
-    upload(req, res, function (err) {
+    upload(req, res, function (err:any) {
       if (err instanceof multer.MulterError) {
         res.status(500).json({ error: "Hubo un problema en la subida del archivo" })
       } else if (err) {

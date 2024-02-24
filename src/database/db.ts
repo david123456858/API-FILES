@@ -1,8 +1,8 @@
 import { connect } from "mongoose";
 
-const DB:string = 'mongodb://127.0.0.1:27017/Files'
+const DB: string = 'mongodb://127.0.0.1:27017/Files'
 
-export const ConnecDb = async () =>{
+export const ConnecDb = async () => {
     try {
         await connect(
             DB

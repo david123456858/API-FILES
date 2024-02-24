@@ -10,7 +10,7 @@ const swaggerSpec = swaggerJSDoc(swaggerOptions)
 const routerSwagger = Router()
 
 
-routerSwagger.use('/docs', swaggerUi.serve)
+routerSwagger.use('/docs', swaggerUi.serve) 
 routerSwagger.get('/docs', swaggerUi.setup(swaggerSpec))
 
 export default routerSwagger
