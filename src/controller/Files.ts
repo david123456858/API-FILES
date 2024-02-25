@@ -15,11 +15,9 @@ export const saveFile = async (req: any, res: Response) => {
         if (state >= 3) {
             res.status(401).json({ data: "no tienes ya autorización compra tacaño" })
         } else {
-            const originalname = req.file?.originalname
-            const size = req.file?.size
             const filsModels = {
-                nameFiles: originalname,
-                size: size,
+                nameFiles: req.file?.originalname,
+                size: req.file?.size,
                 userName: req.info?.name,
                 rol: req.info?.rol,
                 toDate: Date.now()
@@ -34,13 +32,10 @@ export const saveFile = async (req: any, res: Response) => {
             //res.status(200).json({data:"OK success status" })
 
         }
-
-
     } catch (error) {
         throw new Error
     }
 }
-
 export const getAll = async (req: any, res: Response) => {
     try {
         const role = req.info.rol

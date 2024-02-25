@@ -6,7 +6,7 @@ import { upload, uploadFile } from "../middleware/multer/fileUpload";
 import { checkRol } from "../middleware/jwt/filesJWS";
 import { saveFileFirebase } from "../controller/filesPremium";
 
-const routerBase: string = '/api/v1/files'
+export const routerBase: string = '/api/v1/files'
 
 const routesFiles = Router()
 

@@ -5,7 +5,7 @@ import morgan from "morgan"
 import { ConnecDb } from "./src/database/db";
 import routesFiles from "./src/routes/files"
 import routerSwagger from "./src/routes/swagger";
-
+import routeToken from "./src/routes/tokenUser";
 
 export const app = express();
 
@@ -23,6 +23,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use(routesFiles)
 app.use(routerSwagger)
+app.use(routeToken)
 
 app.listen(PORT, () => {
   console.log(
