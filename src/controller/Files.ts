@@ -8,10 +8,8 @@ import { tokenSing } from "../helpers/tokens-files"
 export const saveFile = async (req: any, res: Response) => {
     try {
         let state: number = 0
-
         await filesModels.estimatedDocumentCount({ userName: { $gte: `${req.info.name}` } })
             .then(count => {
-                console.log(count)
                 state = count
             })
         if (state >= 3) {
@@ -26,7 +24,6 @@ export const saveFile = async (req: any, res: Response) => {
                 rol: req.info?.rol,
                 toDate: Date.now()
             }
-            console.log(filesModels)
             const create = await filesModels.create(filsModels)
             const user: User = {
                 rol: "premium",
@@ -50,14 +47,6 @@ export const getAll = async (req: any, res: Response) => {
         if (role === 'premium') {
             const all = await filesModels.find()
             res.json({ info: all })
-            let countUser: any
-            const example2 = await filesModels.estimatedDocumentCount({ userName: { $gte: `${req.info.name}` } })
-                .then(count => {
-                    console.log(count)
-                    countUser = count
-                })
-            console.log("esto es " + countUser)
-
         } else {
             res.status(403).json({ info: "No tienes autorización" })
         }
