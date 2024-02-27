@@ -9,7 +9,9 @@ exports.models = new mongoose_1.Schema({
     size: {
         type: Number
     },
-    todate: {
+    toDate: {
         type: Date
     }
 });
+const filesModels = (0, mongoose_1.model)('Files', exports.models);
+exports.default = filesModels;
