@@ -14,24 +14,17 @@ export const saveFile = async (req: any, res: Response) => {
             })
         if (state >= 3) {
             res.status(401).json({ data: "no tienes ya autorización compra tacaño" })
-        } else {
-            const filsModels = {
-                nameFiles: req.file?.originalname,
-                size: req.file?.size,
-                userName: req.info?.name,
-                rol: req.info?.rol,
-                toDate: Date.now()
-            }
-            const create = await filesModels.create(filsModels)
-            const user: User = {
-                rol: "premium",
-                name: "juan"
-            }
-            const token = await tokenSing(user)
-            res.status(200).json({ data: token })
-            //res.status(200).json({data:"OK success status" })
-
+            return
         }
+        const filsModels = {
+            nameFiles: req.file?.originalname,
+            size: req.file?.size,
+            userName: req.info?.name,
+            rol: req.info?.rol,
+            toDate: Date.now()
+        }
+        const create = await filesModels.create(filsModels)
+        res.status(200).json({ data: "OK success status" })
     } catch (error) {
         throw new Error
     }
@@ -39,12 +32,12 @@ export const saveFile = async (req: any, res: Response) => {
 export const getAll = async (req: any, res: Response) => {
     try {
         const role = req.info.rol
-        if (role === 'premium') {
-            const all = await filesModels.find()
-            res.json({ info: all })
-        } else {
+        if (role !== 'premium') {
             res.status(403).json({ info: "No tienes autorización" })
+            return
         }
+        const all = await filesModels.find()
+        res.json({ info: all })
     } catch (error) {
         throw new Error
     }

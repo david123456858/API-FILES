@@ -22,6 +22,7 @@ export const uploadFile = (req: Request, res: Response, next: NextFunction) => {
     upload(req, res, function (err:any) {
       if (err instanceof multer.MulterError) {
         res.status(500).json({ error: "Hubo un problema en la subida del archivo" })
+        return
       } else if (err) {
         throw err
       }
