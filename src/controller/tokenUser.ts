@@ -13,7 +13,7 @@ export const setTokens = async (res:Response,req:Request) => {
         }
         const token = await tokenSing(user)
         console.log(token)
-        res.status(200)
+        return
     } catch (error) {
         throw new Error
     }

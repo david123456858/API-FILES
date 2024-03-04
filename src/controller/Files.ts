@@ -11,6 +11,7 @@ export const saveFile = async (req: any, res: Response) => {
         await filesModels.estimatedDocumentCount({ userName: { $gte: `${req.info.name}` } })
             .then(count => {
                 state = count
+                console.log(state)
             })
         if (state >= 3) {
             res.status(401).json({ data: "no tienes ya autorización compra tacaño" })
