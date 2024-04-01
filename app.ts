@@ -9,7 +9,7 @@ import routeToken from "./src/routes/tokenUser";
 
 export const app = express();
 
-app.disable('x-powered-by')
+app.disable('x-powered-by')// header for have hide it tegnology 
 app.use(express.json()) //middlware para que el cuerpo de la req sea un json
 app.use(morgan("dev"))
 app.use(express.urlencoded({ extended: true }))

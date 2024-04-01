@@ -9,7 +9,7 @@ export const setTokens = async (res:Response,req:Request) => {
     try {
         const user: User = {
             rol: "premium",
-            name: "Laura Altahona mi novia hermosa"
+            name: "Juan"
         }
         const token = await tokenSing(user)
         console.log(token)
