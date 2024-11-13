@@ -13,6 +13,7 @@ export const app = express();
 app.use(express.json()) //middlware para que el cuerpo de la req sea un json
 app.use(morgan("dev"))
 app.use(express.urlencoded({ extended: true }))
+
 const PORT = process.env.PORT ?? 3000;
 
 ConnecDb()
